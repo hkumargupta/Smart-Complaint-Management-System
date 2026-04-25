@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Complaint Submitted</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#28a745,#218838);
+    color:white;
+}
+
+/* Card */
+.container{
+    background:white;
+    color:black;
+    padding:25px;
+    width:320px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+    animation:fadeIn 0.7s ease;
+}
+
+h2{
+    color:#28a745;
+    margin-bottom:10px;
+}
+
+/* ID box */
+.id-box{
+    background:#f1f1f1;
+    padding:10px;
+    border-radius:8px;
+    margin:10px 0;
+    font-weight:bold;
+}
+
+/* Solution */
+.solution{
+    margin-top:10px;
+    font-size:14px;
+}
+
+/* Buttons */
+a{
+    display:block;
+    margin-top:10px;
+    padding:10px;
+    background:#667eea;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+a:hover{
+    background:#5a67d8;
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>✅ Complaint Submitted</h2>
+
+    <div class="id-box">
+        Complaint ID: {{cid}}
+    </div>
+
+    <div class="solution">
+        <b>Solution:</b><br>
+        {{solution}}
+    </div>
+
+    <a href="/">🏠 Back to Home</a>
+    <a href="/status">🔍 Check Status</a>
+</div>
+
+</body>
+</html>

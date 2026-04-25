@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Check Status</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+/* Card */
+.container{
+    background:white;
+    padding:25px;
+    width:320px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+    animation:fadeIn 0.7s ease;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+/* Input */
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#667eea;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#5a67d8;
+}
+
+/* Result */
+#result{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+/* Back */
+a{
+    display:block;
+    margin-top:10px;
+    text-decoration:none;
+    color:#667eea;
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔍 Check Status</h2>
+
+    <input id="cid" placeholder="Enter Complaint ID">
+    <button onclick="checkStatus()">Check</button>
+
+    <div id="result"></div>
+
+    <a href="/">⬅ Back to Home</a>
+</div>
+
+<script>
+let interval;
+
+function checkStatus(){
+    let cid = document.getElementById("cid").value;
+
+    if(!cid){
+        alert("Please enter ID");
+        return;
+    }
+
+    // Clear previous interval
+    if(interval){
+        clearInterval(interval);
+    }
+
+    interval = setInterval(()=>{
+        fetch('/get_status/' + cid)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("result").innerText =
+                "Status: " + data.status;
+        });
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
